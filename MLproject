@@ -8,4 +8,6 @@ entry_points:
       gamma: {type: string, default: 0.1,0.01}
       kernel: {type: string, default: rbf,poly}
       C: {type: string, default: 1.0,0.1}
-    command: "python train.py {gamma} {kernel} {C}"
+      datetime: {type: string, default: now}
+      daysdelta: {type: string, default: 90}
+    command: "python train.py {gamma} {kernel} {C} {datetime} {daysdelta}"

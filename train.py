@@ -27,6 +27,7 @@ import mlflow.sklearn
 #mlflow.set_tracking_uri("http://training.itu.dk:5000/")
 #mlflow.set_experiment("sklearnSvrWindCaap")
 import logging
+import datetime
 
 logging.basicConfig(level=logging.WARN)
 logger = logging.getLogger(__name__)
@@ -79,7 +80,14 @@ if __name__ == "__main__":
 	warnings.filterwarnings("ignore")
 	np.random.seed(40)
 
+	if sys.argv[4] == "now":
+		now = datetime.datetime.today().strftime("'%Y-%m-%dT%H:%M:00Z'")
+	elif len(sys.argv) > 4:
+		now = sys.argv[4]
+	else:
+		now = datetime.datetime.today().strftime("'%Y-%m-%dT%H:%M:00Z'")
 
+	daysDelta = sys.argv[5] if len(sys.argv) > 5 else "90"
 	try:
 
 		client = InfluxDBClient(host='influxus.itu.dk', port=8086, username='lsda', password='icanonlyread')
@@ -147,6 +155,8 @@ if __name__ == "__main__":
 		mlflow.log_param("bestGamma",bestParams['svm_model__gamma'])
 		mlflow.log_param("bestKernel",bestParams['svm_model__kernel'])
 		mlflow.log_param("bestC",bestParams['svm_model__C'])
+		mlflow.log_param("datetime":now)
+		mlflow.log_param("daysDelta":daysDelta)
 		mlflow.log_metric("rmse", rmse)
 		mlflow.log_metric("r2", r2)
 		mlflow.log_metric("mae", mae)
