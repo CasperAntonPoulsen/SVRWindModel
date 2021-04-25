@@ -96,12 +96,12 @@ if __name__ == "__main__":
 
 		# Get the last 90 days of power generation data
 		generation = client.query(
-			"SELECT * FROM Generation where time > now()-90d"
+			"SELECT * FROM Generation where time > {}-{}d".format(now,daysDelta)
 			) # Query written in InfluxQL
 
 		# Get the last 90 days of weather forecasts with the shortest lead time
 		wind  = client.query(
-			"SELECT * FROM MetForecasts where time > now()-90d and time <= now() and Lead_hours = '1'"
+			"SELECT * FROM MetForecasts where time > {}-{}d and time <= {} and Lead_hours = '1'".format(now,daysdelta,now)
 			) # Query written in InfluxQL
 
 	except Exception as e:
