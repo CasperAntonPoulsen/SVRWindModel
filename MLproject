@@ -1,0 +1,11 @@
+name: SVR_wind_to_energy
+
+conda_env: conda.yaml
+
+entry_points:
+  main:
+    parameters:
+      gamma: {type: string, default: 0.1,0.01}
+      kernel: {type: string, default: rbf,poly}
+      C: {type: string, default: 1.0,0.1}
+    command: "python train.py {gamma} {kernel} {C}"
