@@ -101,7 +101,7 @@ if __name__ == "__main__":
 
 		# Get the last 90 days of weather forecasts with the shortest lead time
 		wind  = client.query(
-			"SELECT * FROM MetForecasts where time > {}-{}d and time <= {} and Lead_hours = '1'".format(now,daysdelta,now)
+			"SELECT * FROM MetForecasts where time > {}-{}d and time <= {} and Lead_hours = '1'".format(now,daysDelta,now)
 			) # Query written in InfluxQL
 
 	except Exception as e:
