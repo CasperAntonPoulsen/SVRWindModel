@@ -150,11 +150,10 @@ if __name__ == "__main__":
 		mlflow.log_metric("rmse", rmse)
 		mlflow.log_metric("r2", r2)
 		mlflow.log_metric("mae", mae)
-"""
+
 		tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
 
 		if tracking_url_type_store != "file":
-			mlflow.sklearn.log_model(pipeline, "model")
+			mlflow.sklearn.log_model(pipeline, "model", registered_model_name="SVRWindModelCaap")
 		else:
 			mlflow.sklearn.log_model(pipeline, "model")
-"""
