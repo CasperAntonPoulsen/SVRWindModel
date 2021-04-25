@@ -144,20 +144,16 @@ if __name__ == "__main__":
 		print("  MAE: %s" % mae)
 		print("  R2: %s" % r2)
 
-		mlflow.log_param("gammas",sys.argv[1])
-		mlflow.log_param("kernels",sys.argv[2])
-		mlflow.log_param("Cs",sys.argv[3])
 		mlflow.log_param("bestGamma",bestParams['svm_model__gamma'])
 		mlflow.log_param("bestKernel",bestParams['svm_model__kernel'])
 		mlflow.log_param("bestC",bestParams['svm_model__C'])
 		mlflow.log_metric("rmse", rmse)
 		mlflow.log_metric("r2", r2)
 		mlflow.log_metric("mae", mae)
-"""
+
 		tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
 
 		if tracking_url_type_store != "file":
-			mlflow.sklearn.log_model(pipeline, "model")
+			mlflow.sklearn.log_model(pipeline, "model", registered_model_name="SVRWindModelCaap")
 		else:
 			mlflow.sklearn.log_model(pipeline, "model")
-"""
