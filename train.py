@@ -131,7 +131,7 @@ if __name__ == "__main__":
 		tscv = TimeSeriesSplit(n_splits=5)
 		pipeline = GridSearchCV(pipeline, param_grid=parameters, n_jobs=15, cv= tscv)
 
-		pipeline.fit(train_X, train_y)
+		pipeline.fit(train_X, np.ravel(train_y))
 
 		bestParams = pipeline.best_params_
 
