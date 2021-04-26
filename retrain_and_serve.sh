@@ -4,4 +4,5 @@ git pull
 rm -r model
 mlflow run .
 killall -SIGKILL mlflow
+killall -SIGKILL Worker
 mlflow models serve -m model
