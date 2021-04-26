@@ -81,11 +81,11 @@ if __name__ == "__main__":
 	np.random.seed(40)
 
 	if sys.argv[4] == "now":
-		now = datetime.datetime.today().strftime("'%Y-%m-%dT%H:%M:%SZ'")
+		now = datetime.datetime.utcnow().strftime("'%Y-%m-%dT%H:%M:%SZ'")
 	elif len(sys.argv) > 4:
 		now = sys.argv[4]
 	else:
-		now = datetime.datetime.today().strftime("'%Y-%m-%dT%H:%M:%SZ'")
+		now = datetime.datetime.utcnow().strftime("'%Y-%m-%dT%H:%M:%SZ'")
 
 	daysDelta = sys.argv[5] if len(sys.argv) > 5 else "90"
 	try:
