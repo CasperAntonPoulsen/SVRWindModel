@@ -163,6 +163,6 @@ if __name__ == "__main__":
 		tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
 
 		if tracking_url_type_store != "file":
-			mlflow.sklearn.save_model(pipeline, "\\models")
+			mlflow.sklearn.save_model(pipeline, "s3://mlflow/artifacts/59")
 		else:
 			mlflow.sklearn.log_model(pipeline, "model")
